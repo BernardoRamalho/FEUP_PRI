@@ -18,7 +18,9 @@ data.isbn = data.isbn.fillna("Not available")
 data.isbn13 = data.isbn13.fillna("Not available")
 '''
 
-print(data[data["pages"] == 0].sum())
+#print(data[data["pages"] == 0].sum())
+#print(data.nunique())
+print(data.info())
 
 #print(data.title.isna().sum())
 
