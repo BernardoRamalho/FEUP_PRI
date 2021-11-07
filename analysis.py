@@ -7,7 +7,12 @@
 
 import pandas as pd
 
+
 data = pd.read_csv("GoodReads_100k_books.csv")
+genres = pd.read_csv("genres.csv") #make sure it's this name
+authors = pd.read_csv("authors.csv") #make sure it's this name
+books = pd.read_csv("books.csv") #make sure it's this name
+ratings = pd.read_csv("ratings.csv") #make sure it's this name
 
 '''
 data.bookformat = data.bookformat.fillna("Not specified")
@@ -27,3 +32,28 @@ print(data.info())
 #data = data.fillna("None")
 
 #print(data.loc[[30]])
+
+
+# __________________________________________________________________________________
+# Data Characterization Tutorial
+
+# Mean
+
+# Median 
+
+# Describe
+
+# Data Visualiation
+
+## use plots 
+### kinds: bar, histogram, density, box
+
+# Calculate
+
+## Average rating per author
+## Book formats percentages
+## Most read genres
+## Books and genres with the best rating
+## Top 0.1% of books
+
+
