@@ -6,33 +6,62 @@
 # Coluna title com um valor nulo
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
-
-data = pd.read_csv("GoodReads_100k_books.csv")
 genres = pd.read_csv("genres.csv") #make sure it's this name
 authors = pd.read_csv("authors.csv") #make sure it's this name
 books = pd.read_csv("books.csv") #make sure it's this name
 ratings = pd.read_csv("ratings.csv") #make sure it's this name
 
-'''
-data.bookformat = data.bookformat.fillna("Not specified")
-data.desc = data.desc.fillna("No description available")
-data.genre = data.genre.fillna("None")
-data.img = data.img.fillna("No image available")
-data.isbn = data.isbn.fillna("Not available")
-data.isbn13 = data.isbn13.fillna("Not available")
-'''
+# Distribution of book ratings
+ratings_list = [0, 0, 0, 0, 0, 0]
 
-#print(data[data["pages"] == 0].sum())
-#print(data.nunique())
-print(data.info())
+for index, row in ratings.iterrows():
+    ratings_list[int(row['rating'])] += 1
 
-#print(data.title.isna().sum())
+ratings_list
+    
+plt.bar([0, 1, 2, 3, 4, 5], ratings_list, color='green')
+plt.show()
 
-#data = data.fillna("None")
+# Bookformats
+chart_data = [0, 0, 0, 0]
+translation = ['Hardcover', 'Paperback', 'Other', 'Unknown']
+for index, row in books.iterrows():
+    bookformat = row['bookformat']
+    if bookformat == 'Hardcover':
+        chart_data[0] += 1
+    elif bookformat == 'Paperback':
+        chart_data[1] += 1
+    elif bookformat == 'Unknown':
+        chart_data[3] += 1
+    else:
+        chart_data[2] += 1
 
-#print(data.loc[[30]])
+fig1, chart = plt.subplots()
+chart.pie(chart_data,labels=translation, shadow=True, autopct='%1.1f%%', startangle=90)
+chart.axis('equal')
+plt.tight_layout()
 
+# Book Characterization
+num_formats = books['bookformat'].nunique()
+average_pages = books['pages'].mean()
+average_num_reviews = books['reviews'].mean()
+total_reviews = books['reviews'].sum()
+
+plt.bar(['Number of formats', 'Average number of pages', 'Average number of reviews'], [num_formats, average_pages, average_num_reviews], color='red')
+plt.tight_layout()
+
+# Average rating authors
+ratings_list = [0, 0, 0, 0, 0, 0]
+
+for index, row in authors.iterrows():
+    ratings_list[int(row['average_rating'])] += 1
+
+ratings_list
+    
+plt.bar([0, 1, 2, 3, 4, 5], ratings_list, color='green')
+plt.show()
 
 # __________________________________________________________________________________
 # Data Characterization Tutorial

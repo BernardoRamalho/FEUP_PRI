@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import sys
 
 clean_df = pd.read_csv('dataset.csv')
 
@@ -21,12 +22,15 @@ if not os.path.exists('genres.csv'):
                 genres_dict[genre].append(book_id)
             
     genres_list = []
+    num_books = []
     for genre_list in [*genres_dict.values()]:
         genres_list.append(','.join(genre_list))
+        num_books.append(len(genre_list))
 
     final_genres_df = pd.DataFrame({
-        'book_id': [*genres_dict.keys()],
-        'genre': genres_list
+        'genre': [*genres_dict.keys()],
+        'num_books': num_books,
+        'ids': genres_list
         })
 
     print("## Sorting the dataframe.")
@@ -70,18 +74,23 @@ if not os.path.exists('authors.csv'):
         book_id = str(row['book_id'])
 
         for author in authors:
+            if author[0] == ' ':
+                author = author[1:]
             if author not in authors_dict:
                 authors_dict[author] = [book_id]
             else:
                 authors_dict[author].append(book_id)
 
     authors_list = []
+    n_books = []
     for author_list in [*authors_dict.values()]:
         authors_list.append(','.join(author_list))
+        n_books.append(len(author_list))        
 
     intermediate_authors_df = pd.DataFrame({
         'author': [*authors_dict.keys()],
-        'ids': authors_list
+        'ids': authors_list,
+        'num_books': n_books
         })
 
     print("## Calculating the average rating for each author.")
@@ -102,6 +111,7 @@ if not os.path.exists('authors.csv'):
     final_authors_df = pd.DataFrame({
         'author': [*authors_dict.keys()],
         'ids': authors_list,
+        'num_books': n_books,
         'average_rating': averages
     })
 
