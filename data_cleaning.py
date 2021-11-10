@@ -26,8 +26,14 @@ print()
 for index, row in df.iterrows():
     genres = str(row['genre']).split(',')
     authors = str(row['author']).split(',')
+
+    # Trim author names
+    for i, author in enumerate(authors):
+        authors[i] = authors[i].strip()
+
     no_dups_genres = list(set(genres))
     no_dups_authors = list(set(authors))
+
     df.at[index, 'genre'] = ','.join(no_dups_genres)
     df.at[index, 'author'] = ','.join(no_dups_authors)
 
