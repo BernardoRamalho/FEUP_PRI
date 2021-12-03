@@ -1,0 +1,32 @@
+Queries:
+
+
+No fl (core author_books):
+{!join from=author_id fromIndex=authors to=author_id}author_id:1
+
+Isto faz um join com o core authors e filtra todos os authors com id 1
+
+{!join from=book_id fromIndex=books to=book_id}*:*
+
+Isto faz outro join com o core books
+
+
+Ideia:
+Fazer mais do que uma query. Por exemplo, se quisermos procurar o livro com id 0 e os seus géneros e autores.
+
+1 - Fazer esta query em books:
+    * q : book_id:0
+
+2 - Fazer esta query em author_books:
+    * q : *:*
+    * fq : {!join from=book_id to=book_id fromIndex=author_books}book_id:0
+
+3 - Fazer esta query em authors:
+    * q : author_id:<valor obtido na query anterior>, ..., author_id:<valor obtido na query anterior>
+
+4 - Fazer esta query em genre_books:
+    * q : *:*
+    * fq : {!join from=genre_id to=genre_id fromIndex=genre_books}book_id:0
+
+5 - Fazer esta query em genres:
+    * q : author_id:<valor obtido na query anterior>, ..., author_id:<valor obtido na query anterior>

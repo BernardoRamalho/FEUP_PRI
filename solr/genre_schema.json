@@ -1,0 +1,50 @@
+{
+	"add-field-type": [
+        {
+            "name":"genreName",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"int",
+            "class":"solr.IntPointField"
+        }
+    ],
+    "add-field": [
+        {
+            "name": "genre_id",
+            "type": "int",
+            "indexed": true,
+            "stored": false,
+            "docValues": true
+        },
+        {
+            "name": "name",
+            "type": "genreName",
+            "indexed": true
+        },
+        {
+            "name": "num_books",
+            "type": "int",
+            "indexed": true,
+            "docValues": true
+        }
+    ]
+}

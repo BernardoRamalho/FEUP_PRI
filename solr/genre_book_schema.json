@@ -1,0 +1,24 @@
+{
+    "add-field-type": [
+        {
+            "name":"int",
+            "class":"solr.IntPointField"
+        }
+    ],
+    "add-field": [
+        {
+            "name": "genre_id",
+            "type": "int",
+            "indexed": true,
+            "stored": false,
+            "docValues": true
+        },
+        {
+            "name": "book_id",
+            "type": "int",
+            "indexed": true,
+            "stored": false,
+            "docValues": true
+        }
+    ]
+}
