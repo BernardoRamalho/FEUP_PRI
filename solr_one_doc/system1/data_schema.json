@@ -1,0 +1,244 @@
+{
+	"add-field-type": [
+        {
+            "name":"int",
+            "class":"solr.IntPointField"
+        },
+        {
+            "name":"float",
+            "class":"solr.FloatPointField"
+        },
+	{
+            "name":"bookAuthor",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+	{
+            "name":"bookGenre",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"bookFormat",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"bookDescription",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"links",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"bookISBN",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                ]
+            }
+        },
+        {
+            "name":"bookTitle",
+            "class":"solr.TextField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.StandardTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        }
+    ],
+    "add-field": [
+        {
+            "name": "type",
+            "type": "string",
+            "indexed": true,
+            "stored": false
+        },
+        {
+            "name": "author",
+            "type": "bookAuthor",
+            "indexed": true
+        },
+        {
+            "name": "bookformat",
+            "type": "bookFormat",
+            "indexed": true
+        },
+        {
+            "name": "desc",
+            "type": "bookDescription",
+            "indexed": true
+        },
+        {
+            "name": "genre",
+            "type": "bookGenre",
+            "indexed": true
+        },
+        {
+            "name": "img",
+            "type": "links",
+            "indexed": false
+        },
+        {
+            "name": "isbn",
+            "type": "bookISBN",
+            "indexed": true
+        },
+        {
+            "name": "link",
+            "type": "links",
+            "indexed": true
+        },
+        {
+            "name": "pages",
+            "type": "int",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "rating",
+            "type": "float",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "reviews",
+            "type": "int",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "title",
+            "type": "bookTitle",
+            "indexed": true
+        },
+        {
+            "name": "totalratings",
+            "type": "int",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "numBooks",
+            "type": "int",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "average_rating",
+            "type": "float",
+            "indexed": true,
+            "docValues": true
+        }
+    ]
+}

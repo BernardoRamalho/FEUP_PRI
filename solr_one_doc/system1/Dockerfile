@@ -4,7 +4,9 @@ FROM solr:8.10
 
 COPY dataset.json /data/data.json
 
-# Schemaless system
+# Schemas
+
+COPY data_schema.json /data/data_schema.json
 
 # Startup Script
 
