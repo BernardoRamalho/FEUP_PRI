@@ -19,3 +19,5 @@ Information needs:
         * query: action books paperback
     - Finding books related to the 19th or 20th centuries
         * query: 19 20 century (19 century OR 20 century)
+
+weights: author^1 title^1 desc^1 genre^1
