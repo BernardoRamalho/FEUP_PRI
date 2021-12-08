@@ -11,3 +11,11 @@ Esquema de dados:
 Queries:
     * os analyzers removem carateres que não fazem parte de palavras, como sinais de pontuação
     * os analyzers transformam as palavras em lower case nos indexes e nas queries
+
+Information needs:
+    - Finding detective books written by Agatha Christie (there are around 60)
+        * query: agatha christie detective
+    - Finding action books that are available in the hardcover format (there are around 812)
+        * query: action books paperback
+    - Finding books related to the 19th or 20th centuries
+        * query: 19 20 century (19 century OR 20 century)
