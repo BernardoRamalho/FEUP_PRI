@@ -1,34 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import SolrConnector from 'react-solr-connector';
 
-// import express from "express";
-// import pkg from "body-parser";
-
-
-// const { json, urlencoded } = pkg;
-
-// const app = express();
-// const PORT = process.env.port || 8080;
-
-// app.use(json());
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:8983");
-//   res.header("Access-Control-Allow-Headers", "*");
-//   next();
-// });
-// app.use(urlencoded({ extended: true }));
-
-// app.post("/startSimulation", (req, res) => {
-// });
-
-// app.listen(PORT, () =>
-//   console.log(`Server listening at http://localhost:${PORT}`)
-// );
-
-{/* <SolrConnector searchParams={searchParams}>
-  <SearchApp/>
-</SolrConnector> */}
 
 class SearchApp extends React.Component {
 
@@ -44,12 +16,6 @@ class SearchApp extends React.Component {
     }
   }
   
-
-{/* <SolrConnector searchParams={searchParams}>
-  <SearchApp/>
-</SolrConnector> */}
-
-
 
 // ========================================
 
