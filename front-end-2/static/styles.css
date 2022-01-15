@@ -1,0 +1,53 @@
+
+#title {
+    font-size: 4rem;
+}
+
+#pageHeader {
+    margin-top: 6em;
+    margin-bottom: 2em;
+}
+
+#search {
+    margin-left: auto;
+    border: 1px solid gray !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    width: 30%;
+}
+
+#searchBar button.btn {
+    height: 100%;
+    padding: 1;
+    margin-right: auto;
+}
+
+#filters {
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 5em;
+}
+
+#searchFields {
+    margin-bottom: 1em;
+}
+
+#searchFields input{
+    margin-left: 0.5em;
+}
+
+#searchFields label {
+    margin-right: 0.5em;
+}
+
+.range {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
