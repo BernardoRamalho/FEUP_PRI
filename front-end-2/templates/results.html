@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for result in results %}
+        <p>{{ result['title'] }}</p>
+        <p>{{ result['author'] }}</p>
+        <p>{{ result['book_id'] }}</p>
+        <p>{{ result['score'] }}</p>
+    {% endfor %}
+
+    {% if page|int() == 1 %}
+        <button disabled><a href="{{url_for('results', page=page|int()-1)}}">Previous Page</a></button>
+    {% else %}
+        <button><a href="{{url_for('results', page=page|int()-1)}}">Previous Page</a></button>
+    {% endif %}
+    
+    {% if page|int() == num_pages|int() %}
+        <button disabled><a href="{{url_for('results', page=page|int()+1)}}">Next Page</a></button>
+    {% else %}
+        <button><a href="{{url_for('results', page=page|int()+1)}}">Next Page</a></button>
+    {% endif %}
+
+</body>
+</html>
