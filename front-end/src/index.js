@@ -1,27 +1,47 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios';
+
 
 
 class SearchApp extends React.Component {
 
+    constructor(props){
+      super(props);
+      this.data = null;
+      
+    }
+
+    getQuery(){
+      console.log("QUERYRYRYRYRYYRYR")
+      axios('http://localhost:8983/solr/books/select?q=fiction%20paperback&q.op=OR&defType=edismax&indent=true&rows=100&qf=author%5E1%20desc%5E1%20title%5E1%20genre%5E1%20bookformat%5E1')
+      .then( response => {this.setData(response.data)})
+    }
+
+    setData(data){
+      console.log(data)
+      this.data = data
+      console.log(this.data)
+    }
+
     render() {
+        this.getQuery();
+        
 
-        let user_query = "job";
-        let search_fields = encodeURIComponent("author desc title genre bookformat review")
+        console.log(this.data)
 
-        fetch(`http://localhost:8983/solr/books/select?q=${user_query}%20OR%20%7B!parent%20which%3D%22type:book%22%7D%7B!edismax%20qf%3D%22review%22%20v%3D%22${user_query}%22%7D&q.op=OR&defType=edismax&indent=true&qf=${search_fields}&fl=*,%20%5Bchild%5D&fq=!type:review&rows=100`)
-        .then(response => response.text())
-        .then((response) => console.log(JSON.parse(response)['response']['docs']))
         return(<div>
-            "adfasdf"
 
-        </div>)
+            <div>
+              {this.data.docs[0]}
+            </div>
+            
+
+        </div>
+        )
     }
   }
   
-
-// ========================================
-
 ReactDOM.render(
     <SearchApp />,
     document.getElementById('root')
