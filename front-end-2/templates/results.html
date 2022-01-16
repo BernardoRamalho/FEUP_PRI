@@ -4,34 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../bootstrap_template.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap_template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Results</title>
 </head>
 <body>
-    <div class="d-inline-block d-flex justify-content-center p-3">
-      <div class="form-outline w-75">
-          <input type="search" id="form1" class="form-control" />
-      </div>
-      <button type="button" class="btn btn-primary w-20">
-          <i class="fas fa-search"></i>
-      </button>
+    <div class="d-flex justify-content-center p-2">
+        <button type="button" class="btn btn-primary btn-dark w-25" href="{{ url_for('.home') }}">
+            Back
+        </button>
     </div>
     <div class="d-flex flex-column">
+        {% for result in results %}
       <article class="smallBook">
         <div class="row">
           <div class="column">
-            <p><strong>Title: </strong>"Riches, Rivals and Radicals: 100 Years of Museums in America"</p>
-            <p><strong>Author: </strong>Marjorie Schwarzer</p>
-            <p><strong>Genre: </strong>Art, Museums, Museology, Art History, Nonfiction</p>
+            <p><a class="clickable-text" href="{{ url_for('book', book_id=result['book_id'][0]) }}"><h3>{{result['title']}}</h3></a></p>
+            <p><strong>Author: </strong>{{result['author']}}</p>
+            <p><strong>Genre: </strong>{{result['genre']}}</p>
           </div>
         </div>
       </article>
+      {% endfor %}
     </div>
-=======
-    <title>Document</title>
+    {% if page|int() == 1 %}
+    <button disabled><a href="{{url_for('results', page=page|int()-1)}}">Previous Page</a></button>
+{% else %}
+    <button><a href="{{url_for('results', page=page|int()-1)}}">Previous Page</a></button>
+{% endif %}
+
+{% if page|int() == num_pages|int() %}
+    <button disabled><a href="{{url_for('results', page=page|int()+1)}}">Next Page</a></button>
+{% else %}
+    <button><a href="{{url_for('results', page=page|int()+1)}}">Next Page</a></button>
+{% endif %}
+    <!--<title>Document</title>
 </head>
 <body>
+    <a href="{{ url_for('.home') }}">Back</a>
     {% for result in results %}
         <p>{{ result['title'] }}</p>
         <p>{{ result['author'] }}</p>
@@ -49,8 +59,7 @@
         <button disabled><a href="{{url_for('results', page=page|int()+1)}}">Next Page</a></button>
     {% else %}
         <button><a href="{{url_for('results', page=page|int()+1)}}">Next Page</a></button>
-    {% endif %}
+    {% endif %}-->
 
->>>>>>> e37430971d9dd31500ca4e0460f7b860998a3aa9
 </body>
 </html>

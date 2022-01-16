@@ -45,7 +45,8 @@ def results():
     page = request.args.get('page')
     print("Page:", page)
 
-    query_url = session['query_url']
+    #query_url = session['query_url']
+    query_url = request.args.get('query')
     query_url = query_url +  f"&start={(int(page) - 1) * 10}"
     print(query_url)
     response = requests.get(query_url).json()['response']
@@ -84,22 +85,23 @@ def search():
     sort_field = request.form['sortField']
     sort_order = request.form['sortOrder']
 
-    print(search_fields)
-
     query_url = build_url(search_str, search_fields, reviews, (float(ratingStart), float(ratingEnd)), (int(pagesStart), int(pagesEnd)), (int(reviewsStart), int(reviewsEnd)), (int(totalratingsStart), int(totalratingsEnd)), (sort_field, sort_order))
 
     print(query_url)
-    session['query_url'] = query_url
-    return redirect(url_for('results', page=page))
+    #session['query_url'] = query_url
+    return redirect(url_for('results', page=page, query=query_url))
 
-"""
-@app.route("/showResults")
-def home():
-    query_url = "http://localhost:8983/solr/books/select?q=*:*&fq=!type:review&q.op=OR&defType=lucene&indent=true&rows=10"
-    results = requests.get(query_url).json()['response']['docs']
-    print(results)
-    return render_template('results.html', results=results)
-"""
+@app.route("/book/<int:book_id>")
+def book(book_id: int):
+    pass
+    url = f"http://localhost:8983/solr/books/select?q=book_id:{book_id}&q.op=OR&indent=true&fl=*,%20score,%20%5Bchild%5D"
+    query_res = requests.get(url).json()['response']
+    if query_res['numFound'] == 0:
+        print("Error, no results found")
+
+    actual_book = query_res['docs'][0]
+
+    return render_template('book.html', book=actual_book)
 
 app.secret_key = os.urandom(24)
 app.run(debug = True)

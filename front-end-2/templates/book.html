@@ -4,33 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../bootstrap_template.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap_template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Book</title>
 </head>
 <body>
     <article class="book">
+      
       <div class="row">
-        <h2 class="title">"Riches, Rivals and Radicals: 100 Years of Museums in America"</h2>
-        <div class="column">
+        <h2 class="title">{{ book['title'] }}</h2>
+      </div>
+
+      <div class="row d-flex justify-content-between">
+        <div class="col">
           <strong></strong>
-          <p><strong>Author: </strong>Marjorie Schwarzer</p>
-          <p><strong>Description: </strong>Highly illustrated, exhaustively researched, and eminently readable, this new edition of ,Riches, Rivals and Radicals, describes the rise of the museum in the United States from the early twentieth century to the early twenty-firstâ€”a story that parallels the historic changes in American society. Through the decades, museums transformed themselves from cabinets of curiosity to centers of civic pride and prestige and emblems of our shared heritage, good and bad. With a rich cast of characters and admirable narrative sweep, Marjorie Schwarzer brings to life the deep impact that museum culture had on society at large and vice versa. Published in celebration of the American Alliance of Museumsâ€™ centennial and The Year of the Museum, ,Riches, Rivals and Radicals, reveals the history of museums to be a gripping and remarkable facet of our American past. This new edition includes a new afterword by the author, and the main text has been updated and revised. </p>
-          <p><strong>Genre: </strong>Art, Museums, Museology, Art History, Nonfiction</p>
-          <p><strong>Bookformat: </strong>Hardcover</p>
-          <p><strong>ISBN: </strong>1933253053</p>
-          <p><strong>Pages: </strong>263</p>
-          <p><strong>Rating: </strong>3.78</p>
-          <p><strong>Total Ratings: </strong>49</p>
-          <p><strong>Reviews: </strong>6</p>
+          <p class="fs-5"><strong class="fs-4">Author(s): </strong>{{ book['author'] }}</p>
+          <p class="fs-5"><strong class="fs-4">Description: </strong>{{ book['desc'] }}</p>
+          <p class="fs-5 genre"><strong class="fs-4">Genre: </strong>{{ book['genre'] }}</p>
+          <p class="fs-5"><strong class="fs-4">Bookformat: </strong>{{ book['bookformat'] }}</p>
+          <p class="fs-5"><strong class="fs-4">ISBN: </strong>{{ book['isbn'] }}</p>
+          <p class="fs-5"><strong class="fs-4">Pages: </strong>{{ book['pages'] }}</p>
+          <p class="fs-5"><strong class="fs-4">Rating: </strong>{{ book['rating'] }}</p>
+          <p class="fs-5"><strong class="fs-4">Total Ratings: </strong>{{ book['totalratings'] }}</p>
+          <p class="fs-5"><strong class="fs-4">Reviews: </strong>{{ book['num_reviews'][0]|int() }}</p>
         </div>
-        <div class="column">
-          <div class="row">
-            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1387709440l/1123708.jpg" alt="Riches, Rivals and Radicals: 100 Years of Museums in America">
-          </div>
-          <div class="row">
-            <a href="https://goodreads.com/book/show/1123708.Riches_Rivals_and_Radicals">Link to book on GoodReads</a>
-          </div>
+        <div class="col d-flex justify-content-center">        
+            <figure class="figure">
+              <img class="figure-img" src="{{ book['img'] }}" alt="{{ book['title'] }}">
+              <figcaption class="figure-caption"><a href="{{ book['link'] }}">Link to book on GoodReads</a></figcaption>
+            </figure>
         </div>
+      </div>
+      <div class="row d-flex flex-column">
+        <h3>Reviews:</h3>
+        {% for review in book['reviews']%}
+        <div class="smallBook my-3 mx-0 mw-100 review text-justify">
+          {{ review['review'] }}
+        </div>
+        {% endfor %}
       </div>
     </article>
 </body>

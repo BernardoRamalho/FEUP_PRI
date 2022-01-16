@@ -51,3 +51,12 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
+.clickable-text {
+    text-decoration: none;
+
+}
+
+.genre {
+    word-break: break-all;
+}
