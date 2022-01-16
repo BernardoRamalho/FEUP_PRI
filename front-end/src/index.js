@@ -42,9 +42,6 @@ class SearchApp extends React.Component {
     }
   }
   
-
-// ========================================
-
 ReactDOM.render(
     <SearchApp />,
     document.getElementById('root')
